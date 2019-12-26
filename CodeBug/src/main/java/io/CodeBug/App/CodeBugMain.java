@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 //The @SpringBootApplication tells SpringBoot that this class is the starting point of our SpringBoot application
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "io.CodeBug")
 public class CodeBugMain {
 
 	public static void main(String[] args) {

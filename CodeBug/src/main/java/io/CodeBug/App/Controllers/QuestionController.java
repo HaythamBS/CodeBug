@@ -12,7 +12,7 @@ public class QuestionController {
 		return "All questions";
 	}
 	
-	@RequestMapping(value="",method= RequestMethod.POST)
+	/**@RequestMapping(value="",method= RequestMethod.POST)
 	public void AddQuestion() {
 		
 	}
@@ -27,5 +27,5 @@ public class QuestionController {
 	@RequestMapping(value="",method = RequestMethod.POST)
 	public void SearchQuestion() {
 		
-	}
+	}**/
 }
