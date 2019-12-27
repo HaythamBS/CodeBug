@@ -5,8 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import io.CodeBug.Answer.Answer;
 
 @Entity
+@Table(name="comments")
 public class Comment {
 
 	@Id
@@ -17,6 +23,11 @@ public class Comment {
 	@Column(name = "rating")
 	private int rating;
 		
+	@ManyToOne
+	@JoinColumn(name = "answer_Id", nullable = false)
+	private Answer answer;
+	
+	
 	public int getComment_Id() {
 		return comment_Id;
 	}

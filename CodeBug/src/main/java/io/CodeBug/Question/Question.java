@@ -1,15 +1,22 @@
 package io.CodeBug.Question;
 
-import java.sql.Date;
 import java.time.LocalDate;
-
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import io.CodeBug.Answer.Answer;
+import io.CodeBug.Category.Category;
 
 @Entity
+@Table(name="questions")
 public class Question {
 
 	@Id
@@ -29,6 +36,16 @@ public class Question {
 	private int rating;
 	@Column(name = "viewCount")
 	private int viewCount;
+	private Boolean isDuplicated;
+	
+	
+	@OneToMany(mappedBy = "question")
+    private List<Answer> answers;
+	
+	@ManyToOne
+	@JoinColumn(name ="category_Id" , nullable = false)
+	private Category category;
+	
 	
 	
 
@@ -95,7 +112,26 @@ public class Question {
 		this.viewCount = viewCount;
 	}
 	
-	
-	
+	public Boolean getIsDuplicated() {
+		return isDuplicated;
+	}
+
+	public void setIsDuplicated(Boolean isDuplicated) {
+		this.isDuplicated = isDuplicated;
+	}
+	public List<Answer> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
+	}
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 
 }
