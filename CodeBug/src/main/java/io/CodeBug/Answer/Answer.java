@@ -2,13 +2,27 @@ package io.CodeBug.Answer;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Answer {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int answer_Id;
+	@Column(name = "description")
 	private String description;
+	@Column(name = "rating")
 	private int rating;
+	@Column(name = "is_accepted")
 	private Boolean isAccepted;
+	@Column(name = "postedOn")
 	private Date postedOn;
+	@Column(name = "updatedOn")
 	private Date lastUpdatedOn;
 	
 	

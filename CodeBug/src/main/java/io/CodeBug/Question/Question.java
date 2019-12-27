@@ -3,15 +3,31 @@ package io.CodeBug.Question;
 import java.sql.Date;
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Question {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int question_Id;
+	@Column(name = "title")
 	private String Title;
+	@Column(name = "description")
 	private String description;
+	@Column(name = "is_answered")
 	private Boolean isAnswered;
+	@Column(name = "postedOn")
 	private LocalDate postedOn;
+	@Column(name = "updatedOn")
 	private LocalDate lastUpdatedOn;
+	@Column(name = "rating")
 	private int rating;
+	@Column(name = "viewCount")
 	private int viewCount;
 	
 	
