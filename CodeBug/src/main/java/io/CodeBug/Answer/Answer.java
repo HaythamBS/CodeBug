@@ -12,7 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import io.CodeBug.Comment.Comment;
 import io.CodeBug.Question.Question;
 

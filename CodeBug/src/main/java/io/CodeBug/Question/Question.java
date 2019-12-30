@@ -2,21 +2,26 @@ package io.CodeBug.Question;
 
 import java.time.LocalDate;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import io.CodeBug.Answer.Answer;
 import io.CodeBug.Category.Category;
+import io.CodeBug.Tag.Tag;
 
 @Entity
-@Table(name="questions")
+@Table(name = "questions")
 public class Question {
 
 	@Id
@@ -37,17 +42,18 @@ public class Question {
 	@Column(name = "viewCount")
 	private int viewCount;
 	private Boolean isDuplicated;
-	
-	
+
 	@OneToMany(mappedBy = "question")
-    private List<Answer> answers;
-	
+	private List<Answer> answers;
+
 	@ManyToOne
-	@JoinColumn(name ="category_Id" , nullable = false)
+	@JoinColumn(name = "category_Id", nullable = false)
 	private Category category;
-	
-	
-	
+
+	@ManyToMany(cascade = { CascadeType.ALL })
+	@JoinTable(name = "question_tags", joinColumns = { @JoinColumn(name = "question_Id") }, inverseJoinColumns = {
+			@JoinColumn(name = "tag_Id") })
+	private List<Tag> tags;
 
 	public Question() {
 		super();
@@ -65,53 +71,68 @@ public class Question {
 		this.rating = rating;
 		this.viewCount = viewCount;
 	}
-	
+
 	public int getQuestion_Id() {
 		return question_Id;
 	}
+
+	
 	public void setQuestion_Id(int question_Id) {
 		this.question_Id = question_Id;
 	}
+
 	public String getTitle() {
 		return Title;
 	}
+
 	public void setTitle(String title) {
 		Title = title;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public Boolean getIsAnswered() {
 		return isAnswered;
 	}
+
 	public void setIsAnswered(Boolean isAnswered) {
 		this.isAnswered = isAnswered;
 	}
+
 	public LocalDate getPostedOn() {
 		return postedOn;
 	}
+
 	public LocalDate getLastUpdatedOn() {
 		return lastUpdatedOn;
 	}
+
 	public void setLastUpdatedOn(LocalDate lastUpdatedOn) {
 		this.lastUpdatedOn = lastUpdatedOn;
 	}
+
 	public int getRating() {
 		return rating;
 	}
+
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
+
 	public int getViewCount() {
 		return viewCount;
 	}
+
 	public void setViewCount(int viewCount) {
 		this.viewCount = viewCount;
 	}
-	
+
 	public Boolean getIsDuplicated() {
 		return isDuplicated;
 	}
@@ -119,6 +140,7 @@ public class Question {
 	public void setIsDuplicated(Boolean isDuplicated) {
 		this.isDuplicated = isDuplicated;
 	}
+
 	public List<Answer> getAnswers() {
 		return answers;
 	}
@@ -126,12 +148,20 @@ public class Question {
 	public void setAnswers(List<Answer> answers) {
 		this.answers = answers;
 	}
+
 	public Category getCategory() {
 		return category;
 	}
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+	public List<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
 	}
 
 }

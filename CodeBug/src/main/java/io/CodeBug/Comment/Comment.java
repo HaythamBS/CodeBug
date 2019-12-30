@@ -28,6 +28,7 @@ public class Comment {
 	private Answer answer;
 	
 	
+	
 	public int getComment_Id() {
 		return comment_Id;
 	}
@@ -46,7 +47,12 @@ public class Comment {
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
-
+	public Answer getAnswer() {
+		return answer;
+	}
+	public void setAnswer(Answer answer) {
+		this.answer = answer;
+	}
 	
 	
 	

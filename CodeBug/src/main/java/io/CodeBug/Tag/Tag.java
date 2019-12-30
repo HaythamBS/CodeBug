@@ -1,11 +1,16 @@
 package io.CodeBug.Tag;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import io.CodeBug.Question.Question;
 
 @Entity
 @Table(name="tags")
@@ -16,6 +21,9 @@ public class Tag {
 	private int tag_Id;
 	@Column(name = "name")
 	private int name;
+	
+	@ManyToMany(mappedBy="tags")
+	private List<Question> questions;
 	
 	
 	public int getTag_Id() {
@@ -30,7 +38,12 @@ public class Tag {
 	public void setName(int name) {
 		this.name = name;
 	}
-	
+	public List<Question> getQuestions() {
+		return questions;
+	}
+	public void setQuestions(List<Question> questions) {
+		this.questions = questions;
+	}
 	
 	
 }
