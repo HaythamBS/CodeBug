@@ -13,20 +13,20 @@ public class CommentController {
 	@Autowired
 	private CommentService commentService;
 
-	@RequestMapping(value="/questions/{id}",method = RequestMethod.POST)
+	@RequestMapping(value="/comments/{id}",method = RequestMethod.POST)
 	public void AddComment(@RequestBody Comment comment,@PathVariable int id) {
 
 		commentService.AddComment(comment,id);
 
 	}
 
-	@RequestMapping(method = RequestMethod.PUT)
+	@RequestMapping(value="/comments/{id}",method = RequestMethod.PUT)
 	public void updateComment(@RequestBody Comment comment, @PathVariable int id) {
 
 		commentService.UpdateComment(comment, id);
 	}
-
-	public void DeleteComment(int id) {
+	@RequestMapping(value="/comments/{id}",method = RequestMethod.DELETE)
+	public void DeleteComment(@PathVariable Long id) {
 
 		commentService.DeleteComment(id);
 	}

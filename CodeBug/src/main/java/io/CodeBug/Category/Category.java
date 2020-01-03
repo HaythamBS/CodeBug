@@ -18,7 +18,7 @@ public class Category {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int category_Id;
+	private Long category_Id;
 	@Column(name = "name")
 	private int name;
 	
@@ -26,11 +26,11 @@ public class Category {
 	private List<Question> questions;
 	
 	
-	public int getCategory_Id() {
+	public Long getCategory_Id() {
 		return category_Id;
 	}
 	
-	public void setCategory_Id(int category_Id) {
+	public void setCategory_Id(Long category_Id) {
 		this.category_Id = category_Id;
 	}
 	public int getName() {

@@ -21,7 +21,7 @@ public class Answer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int answer_Id;
+	private Long answer_Id;
 
 	@Column(name = "description")
 	private String description;
@@ -47,11 +47,11 @@ public class Answer {
 	
 	
 
-	public int getAnswer_Id() {
+	public Long getAnswer_Id() {
 		return answer_Id;
 	}
 
-	public void setAnswer_Id(int answer_Id) {
+	public void setAnswer_Id(Long answer_Id) {
 		this.answer_Id = answer_Id;
 	}
 

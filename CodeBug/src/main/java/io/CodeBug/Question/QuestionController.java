@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,7 +37,7 @@ public class QuestionController extends BaseController {
 	// we can use different parameter name in the route and in the action but we
 	// must specify it like this @PathVariable("differntParamName")
 	@RequestMapping(value = "/questions/{id}", method = RequestMethod.GET)
-	public Question FindQuestion(@PathVariable int id) {
+	public Optional<Question> FindQuestion(@PathVariable Long id) {
 		return questionService.FindQuestionById(id);
 	}
 
@@ -54,7 +55,7 @@ public class QuestionController extends BaseController {
 	}
 
 	@RequestMapping(value = "/questions/{id}", method = RequestMethod.DELETE)
-	public void deleteQuestion(@PathVariable int id) {
+	public void deleteQuestion(@PathVariable Long id) {
 		questionService.DeleteQuestion(id);
 	}
 

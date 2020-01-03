@@ -15,35 +15,35 @@ import io.CodeBug.Question.QuestionService;
 @RestController
 public class AnswerController {
 
-	
 	// The @Autowired Annotation injects the QuestionService Business class in the
-		// QuestionController
+	// QuestionController
 
-		@Autowired
-		private AnswerService answerService;
+	@Autowired
+	private AnswerService answerService;
 
-		@RequestMapping(value = "/questions", method = RequestMethod.GET)
-		public List<Answer> Getanswers() {
+	@RequestMapping(value = "/answers", method = RequestMethod.GET)
+	public List<Answer> Getanswers() {
 
-			return answerService.getAllAnswers();
+		return answerService.getAllAnswers();
 
-		}
+	}
 
-		// In order to pass an object as parameter to the controller we must use the
-		// @RequestBody annotation
-		@RequestMapping(value = "/questions", method = RequestMethod.POST)
-		public void AddAnswer(@RequestBody Answer answer) {
+	// In order to pass an object as parameter to the controller we must use the
+	// @RequestBody annotation
 
-			answerService.AddAnswer(answer);
-		}
+	@RequestMapping(value = "/answers", method = RequestMethod.POST)
+	public void AddAnswer(@RequestBody Answer answer) {
 
-		@RequestMapping(value = "/questions/{id}", method = RequestMethod.PUT)
-		public void updateAnswer(@RequestBody Answer answer, @PathVariable int id) {
-			answerService.UpdateAnswer(answer, id);
-		}
+		answerService.AddAnswer(answer);
+	}
 
-		@RequestMapping(value = "/questions/{id}", method = RequestMethod.DELETE)
-		public void deleteAnswer(@PathVariable int id) {
-			answerService.DeleteAnswer(id);
-		}
+	@RequestMapping(value = "/answers/{id}", method = RequestMethod.PUT)
+	public void updateAnswer(@RequestBody Answer answer, @PathVariable int id) {
+		answerService.UpdateAnswer(answer, id);
+	}
+
+	@RequestMapping(value = "/answers/{id}", method = RequestMethod.DELETE)
+	public void deleteAnswer(@PathVariable Long id) {
+		answerService.DeleteAnswer(id);
+	}
 }

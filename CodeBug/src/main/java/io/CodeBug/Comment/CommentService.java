@@ -21,20 +21,24 @@ public class CommentService {
 
 		Answer answer = answers.stream().filter(x -> x.getAnswer_Id() == id).findFirst().get();
 		comment.setAnswer(answer);
-		comments.add(comment);
+		commentRepository.save(comment);
 	}
 
-	public void DeleteComment(int id) {
+	public void DeleteComment(Long id) {
 
-		comments.removeIf(x -> x.getComment_Id() == id);
+		//comments.removeIf(x -> x.getComment_Id() == id);
+		commentRepository.deleteById(id);
 
 	}
 
 	public void UpdateComment(Comment comment, int id) {
 
-		Comment c = comments.stream().filter(x -> x.getComment_Id() == id).findFirst().get();
-		int index = comments.indexOf(c);
-		comments.set(index, comment);
+		/*
+		 * Comment c = comments.stream().filter(x -> x.getComment_Id() ==
+		 * id).findFirst().get(); int index = comments.indexOf(c); comments.set(index,
+		 * comment);
+		 */
+		commentRepository.save(comment);
 
 	}
 

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,36 +19,46 @@ public class QuestionService {
 	@Autowired
 	private QuestionRepository questionRepository;
 	
-	private List<Question> questions = new ArrayList<>(
-			Arrays.asList(new Question(1, "Question 1", "Content 1", false, LocalDate.now(), LocalDate.now(), 0, 1),
-					new Question(2, "Question 2", "Content 2", true, LocalDate.now(), LocalDate.now(), 0, 5),
-					new Question(3, "Question 3", "Content 3", false, LocalDate.now(), LocalDate.now(), 0, 28),
-					new Question(4, "Question 4", "Content 4", false, LocalDate.now(), LocalDate.now(), 0, 156)));
+	/*
+	 * private List<Question> questions = new ArrayList<>( Arrays.asList(new
+	 * Question(1, "Question 1", "Content 1", false, LocalDate.now(),
+	 * LocalDate.now(), 0, 1), new Question(2, "Question 2", "Content 2", true,
+	 * LocalDate.now(), LocalDate.now(), 0, 5), new Question(3, "Question 3",
+	 * "Content 3", false, LocalDate.now(), LocalDate.now(), 0, 28), new Question(4,
+	 * "Question 4", "Content 4", false, LocalDate.now(), LocalDate.now(), 0,
+	 * 156)));
+	 */
 
 	public List<Question> getAllQuestion() {
 
-		return questions;
+		return (List<Question>)questionRepository.findAll();
 	}
 
-	public Question FindQuestionById(int id) {
+	public Optional<Question> FindQuestionById(Long id) {
 
-		return questions.stream().filter(x -> x.getQuestion_Id() == id).findFirst().get();
+		//return questions.stream().filter(x -> x.getQuestion_Id() == id).findFirst().get();
+		return questionRepository.findById(id);
 	}
 
 	public void AddQuestion(Question question) {
 
-		questions.add(question);
+		//questions.add(question);
+		questionRepository.save(question);
 	}
 
 	public void UpdateQuestion(Question question, int id) {
 
-		Question q = questions.stream().filter(x -> x.getQuestion_Id() == id).findFirst().get();
-		int index = questions.indexOf(q);
-		questions.set(index, question);
+		/*
+		 * Question q = questions.stream().filter(x -> x.getQuestion_Id() ==
+		 * id).findFirst().get(); int index = questions.indexOf(q); questions.set(index,
+		 * question);
+		 */
+		questionRepository.save(question);
 	}
 
-	public void DeleteQuestion(int id) {
+	public void DeleteQuestion(Long id) {
 
-		questions.removeIf(x -> x.getQuestion_Id() == id);
+		//questions.removeIf(x -> x.getQuestion_Id() == id);
+		questionRepository.deleteById(id);
 	}
 }

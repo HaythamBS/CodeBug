@@ -12,30 +12,36 @@ import io.CodeBug.Question.Question;
 @Service
 public class AnswerService {
 
-	@Autowired
+	@Autowired(required = true)
 	private AnswerRepository answerRepository;
 	
+
 	List<Answer> answers = new ArrayList<Answer>();
 	
 	public List<Answer> getAllAnswers() {
 
-		return answers;
+		return (List<Answer>) answerRepository.findAll();
+		
 	}
 
 	public void AddAnswer(Answer answer) {
 
-		answers.add(answer);
+		answerRepository.save(answer);
 	}
 
 	public void UpdateAnswer(Answer answer, int id) {
 
-		Answer a = answers.stream().filter(x -> x.getAnswer_Id() == id).findFirst().get();
-		int index = answers.indexOf(a);
-		answers.set(index, answer);
+		/*
+		 * Answer a = answers.stream().filter(x -> x.getAnswer_Id() ==
+		 * id).findFirst().get(); int index = answers.indexOf(a); answers.set(index,
+		 * answer);
+		 */
+		answerRepository.save(answer);
 	}
 
-	public void DeleteAnswer(int id) {
+	public void DeleteAnswer(Long id) {
 
-		answers.removeIf(x -> x.getAnswer_Id() == id);
+		answerRepository.deleteById(id);
+		//answers.removeIf(x -> x.getAnswer_Id() == id);
 	}
 }

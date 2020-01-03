@@ -18,7 +18,7 @@ public class Tag {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int tag_Id;
+	private Long tag_Id;
 	@Column(name = "name")
 	private int name;
 	
@@ -26,10 +26,10 @@ public class Tag {
 	private List<Question> questions;
 	
 	
-	public int getTag_Id() {
+	public Long getTag_Id() {
 		return tag_Id;
 	}
-	public void setTag_Id(int tag_Id) {
+	public void setTag_Id(Long tag_Id) {
 		this.tag_Id = tag_Id;
 	}
 	public int getName() {

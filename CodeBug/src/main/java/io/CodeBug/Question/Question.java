@@ -26,7 +26,7 @@ public class Question {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int question_Id;
+	private Long question_Id;
 	@Column(name = "title")
 	private String Title;
 	@Column(name = "description")
@@ -59,7 +59,7 @@ public class Question {
 		super();
 	}
 
-	public Question(int question_Id, String title, String description, Boolean isAnswered, LocalDate postedOn,
+	public Question(Long question_Id, String title, String description, Boolean isAnswered, LocalDate postedOn,
 			LocalDate lastUpdatedOn, int rating, int viewCount) {
 		super();
 		this.question_Id = question_Id;
@@ -72,12 +72,12 @@ public class Question {
 		this.viewCount = viewCount;
 	}
 
-	public int getQuestion_Id() {
+	public Long getQuestion_Id() {
 		return question_Id;
 	}
 
 	
-	public void setQuestion_Id(int question_Id) {
+	public void setQuestion_Id(Long question_Id) {
 		this.question_Id = question_Id;
 	}
 
